@@ -10,3 +10,4 @@ if (instance1 == instance2 && instance2 == logger.Instance)
     Console.WriteLine("Instances are the same");
 }
 
+Console.ReadLine();

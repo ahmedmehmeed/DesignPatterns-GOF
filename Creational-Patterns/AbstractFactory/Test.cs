@@ -1,12 +1,12 @@
 ﻿
 
-var AlexShoppingCartFactory = new AlexShoppingCartFactory();
-var AlexShoping = new Cart(AlexShoppingCartFactory);
-AlexShoping.CalCulateCost();
+var AlexShippingCartFactory = new AlexShippingCartFactory();
+var AlexShiping = new Cart(AlexShippingCartFactory);
+AlexShiping.CalCulateCost();
 
 
-var CairoShoppingCartFactory = new CairoShoppingCartFactory();
-var CairoShoping = new Cart(CairoShoppingCartFactory);
-CairoShoping.CalCulateCost();
+var CairoShippingCartFactory = new CairoShippingCartFactory();
+var CairoShiping = new Cart(CairoShippingCartFactory);
+CairoShiping.CalCulateCost();
 
 Console.ReadLine();

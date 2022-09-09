@@ -5,7 +5,7 @@
 public interface IShoppingCartFactory
 {
     IDiscountService CreateDiscount();
-    IShoppingCostService CreateShoppingCost();
+    IShippingCostService CreateShippingCost();
 
 }
 
@@ -20,9 +20,9 @@ public interface IDiscountService
 /// <summary>
 /// Abstract Product
 /// </summary>
-public interface IShoppingCostService
+public interface IShippingCostService
 {
-    int ShoppingCost { get; }
+    int ShippingCost { get; }
 
 }
 
@@ -46,33 +46,33 @@ public class RecentFoodsDiscount : IDiscountService
 /// <summary>
 /// Concrete Product
 /// </summary>
-public class AlexShopingCostService : IShoppingCostService
+public class AlexShipingCostService : IShippingCostService
 {
-    public int ShoppingCost => 500;
+    public int ShippingCost => 500;
 }
 
 /// <summary>
 /// Concrete Product
 /// </summary>
-public class CairoShopingCostService : IShoppingCostService
+public class CairoShipingCostService : IShippingCostService
 {
-    public int ShoppingCost => 100;
+    public int ShippingCost => 100;
 }
 
 /// <summary>
 /// 
 /// Concrete Factory
 /// </summary>
-public class CairoShoppingCartFactory : IShoppingCartFactory
+public class CairoShippingCartFactory : IShoppingCartFactory
 {
     public IDiscountService CreateDiscount()
     {
         return new RecentClothesDiscount();
     }
 
-    public IShoppingCostService CreateShoppingCost()
+    public IShippingCostService CreateShippingCost()
     {
-        return new CairoShopingCostService();
+        return new CairoShipingCostService();
     }
 }
 
@@ -80,16 +80,16 @@ public class CairoShoppingCartFactory : IShoppingCartFactory
 /// 
 /// Concrete Factory
 /// </summary>
-public class  AlexShoppingCartFactory : IShoppingCartFactory
+public class  AlexShippingCartFactory : IShoppingCartFactory
 {
     public IDiscountService CreateDiscount()
     {
         return new RecentClothesDiscount();
     }
 
-    public IShoppingCostService CreateShoppingCost()
+    public IShippingCostService CreateShippingCost()
     {
-        return new AlexShopingCostService();
+        return new AlexShipingCostService();
     }
 }
 
@@ -99,19 +99,19 @@ public class  AlexShoppingCartFactory : IShoppingCartFactory
 public class Cart
 {
     private readonly IDiscountService discountPercentage;
-    private readonly IShoppingCostService ShoppingCost;
+    private readonly IShippingCostService ShippingCost;
     private readonly int Itemcost;
     public Cart(IShoppingCartFactory factory)
     {
         discountPercentage = factory.CreateDiscount();
-        ShoppingCost = factory.CreateShoppingCost();
+        ShippingCost = factory.CreateShippingCost();
         Itemcost = 200;
     }
 
     public void CalCulateCost()
     {
     
-        Console.WriteLine($"Total Cost = "+$"{Itemcost-(Itemcost/100* discountPercentage.DiscountPercentage)+ShoppingCost.ShoppingCost}");
+        Console.WriteLine($"Total Cost = "+$"{Itemcost-(Itemcost/100* discountPercentage.DiscountPercentage)+ShippingCost.ShippingCost}");
     }
 
 }
